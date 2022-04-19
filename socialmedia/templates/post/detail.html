@@ -1,0 +1,37 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+<div class="card">
+
+    <p class="card-body">text post:{{ post.body }}</p>
+    <img src="{{ post.img.url }}" alt="" style="width: 300px;height: 400px">
+    <p class="card-body">post_date:{{ post.updated|date:"Y/M" }}</p>
+    <p class="card-body">author:{{ post.user.username }}</p>
+    {% if request.user.id == post.user.id %}:
+    <a href="{% url 'post_delete'  post.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'post_update'  post.id %}" class="btn btn-info">Update</a>
+    {% endif %}
+</div>
+<hr>
+{% if request.user.is_authenticated %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <input type="submit" value="Create Comment">
+</form>
+{% else %}
+<p>only logged users can add a comment</p>
+{% endif %}
+<hr>
+{% for comments in comment %}
+<p>{{ comment.count }} comments</p>
+<div class="card">
+    <p class="card-header">{{ comments.user }} | {{ comments.created|timesince }}</p>
+    <p>{{ comments.body }}</p>
+</div>
+{% empty %}
+<p>No comment yet</p>
+{% endfor %}
+
+
+{% endblock %}

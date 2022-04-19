@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+
+    <form class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create">
+    </form>
+{% endblock %}

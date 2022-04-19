@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html> 
+    <head>  
+    <script type="text/javascript">
+        
+    function CheckColors(val){
+     var element=document.getElementById('color');
+     if(val=='pick a color'||val=='others')
+       element.style.display='block';
+     else  
+       element.style.display='none';
+    }
+
+
+
+
+    </script> 
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/email_inbox.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    </head>
+    <body>
+      <select name="color" onchange='CheckColors(this.value);'> 
+        <option>pick a color</option>  
+        <option value="red">RED</option>
+        <option value="blue">BLUE</option>
+        <option value="others">others</option>
+      </select>
+    <input type="text" name="color" id="color" style='display:none;'/>
+    </body>
+    <script>
+        function CheckColors(){
+var element = document.getElementById("mySelect");
+var element2 = document.getElementById("color");
+var element3 = document.getElementById("addColor");
+ if(element.value =='pick a color'|| element.value =='others'){
+   element2.style.display='block';
+   element3.style.display='block';
+ }
+ else {
+   element2.style.display='none';
+   element3.style.display='none';
+  }
+}
+
+function addValue(){
+  var textToAdd  = document.getElementById("color").value;
+  var x          = document.getElementById("mySelect");
+  var option     = document.createElement("option");
+  option.text    = textToAdd;
+  x.add(option);
+}
+    </script>
+    </html>
